@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  
   def new
     redirect_to home_path if current_user
   end
@@ -8,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.where(email: params[:email]).first
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to home_path, notice: "You are signed in!"
+      redirect_to home_path, notice: "You are signed in, enjoy!"
     else
       flash[:error] = "Invalid email or password."
       redirect_to sign_in_path
