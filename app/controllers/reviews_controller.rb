@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+ class ReviewsController < ApplicationController
 before_filter :require_user
 
   def create
@@ -8,6 +8,7 @@ before_filter :require_user
     if review.save
       redirect_to @video
     else
+      @reviews = @video.reviews.reload
       render 'videos/show'
     end
   end
