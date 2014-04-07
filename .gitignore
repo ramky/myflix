@@ -16,3 +16,4 @@
 # using ruby-version and ruby-gemset
 # Adding this to make emacs + rspec-mode work
 .rvmrc
+.DS_Store
