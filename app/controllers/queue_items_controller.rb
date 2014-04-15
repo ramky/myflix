@@ -15,7 +15,7 @@ class QueueItemsController < ApplicationController
 
     if current_user.queue_items.include?(queue_item)
       queue_item.destroy 
-      normalize_queue_item_positions
+      current_user.normalize_queue_item_positions
     end
     redirect_to my_queue_path
   end
@@ -24,7 +24,7 @@ class QueueItemsController < ApplicationController
     # [{id: 4, position: 2}, {id:3, position: 1}]
     begin
       update_queue_items
-      normalize_queue_item_positions
+      current_user.normalize_queue_item_positions
     rescue ActiveRecord::RecordInvalid
       flash[:error] = "Invalid position number"
     end
@@ -51,12 +51,6 @@ private
         queue_item = QueueItem.find(queue_item_data['id'])
         queue_item.update_attributes!(position: queue_item_data['position']) if queue_item.user == current_user
       end
-    end
-  end
-
-  def normalize_queue_item_positions
-    current_user.queue_items.each_with_index do |queue_item, index|
-      queue_item.update_attributes(position: index+1)
     end
   end
 end
