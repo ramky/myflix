@@ -21,4 +21,6 @@ Myflix::Application.routes.draw do
   resources :sessions, only: [:create]
 
   resources :categories, except: [:destroy]
+  get 'people', to: 'relationships#index'
+  resources :relationships, only: [:index, :destroy]
 end
