@@ -22,5 +22,5 @@ Myflix::Application.routes.draw do
 
   resources :categories, except: [:destroy]
   get 'people', to: 'relationships#index'
-  resources :relationships, only: [:index, :destroy]
+  resources :relationships, only: [:index, :create, :destroy]
 end
