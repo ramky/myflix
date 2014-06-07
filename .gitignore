@@ -17,3 +17,4 @@
 # Adding this to make emacs + rspec-mode work
 .rvmrc
 .DS_Store
+tags
