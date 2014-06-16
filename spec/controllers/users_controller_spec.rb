@@ -117,7 +117,7 @@ describe UsersController do
     it "sets @invitation_token" do
       invitation = Fabricate(:invitation)
       get :new_with_invitation_token, token: invitation.token
-      expect(assigns(:invitation_token)).to eq(invitation.token)
+      expect(assigns(:token)).to eq(invitation.token)
     end
 
     it "redirects to expired token page for invalid tokens" do
