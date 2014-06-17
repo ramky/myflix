@@ -7,15 +7,13 @@ describe UsersController do
       expect(assigns(:user)).to be_instance_of(User)
     end
 
-    it "generates a random token when the user is created" do
-      alice = Fabricate(:user)
-      expect(alice.token).to be_present
+    it_behaves_like "tokenable" do
+      let(:object) { Fabricate(:user) }
     end
-
     describe "POST create" do
       context "with valid input" do
         before do
-          post :create, user: Fabricate.attributes_for(:user)          
+          post :create, user: Fabricate.attributes_for(:user)
         end
 
         it "creates the user" do
