@@ -9,7 +9,7 @@
             %a(href="") Add a New Video
         %fieldset
           = f.text_field :title, label: "Title"
-          = f.select :categories, options_for_select(Category.all.map {|category| [category.name, category.id]}), label: "Category"
+          = f.select :category_ids, options_for_select(Category.all.map {|c| [c.name, c.id]}), label: "Category"
           = f.text_area :description, rows: 8, label: "Description"
           .control-group
             %label.control-label Large Cover

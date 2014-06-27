@@ -3,6 +3,7 @@ class Video < ActiveRecord::Base
   has_many :categories, through: :video_categories
   has_many :reviews, -> { order 'created_at DESC' }
   has_many :queue_items
+  accepts_nested_attributes_for  :categories
 
   validates_presence_of :title, :description
 
