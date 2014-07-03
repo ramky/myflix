@@ -5,6 +5,9 @@ class Video < ActiveRecord::Base
   has_many :queue_items
   accepts_nested_attributes_for  :categories
 
+  mount_uploader :large_cover_image, LargeCoverUploader
+  mount_uploader :small_cover_image, SmallCoverUploader
+
   validates_presence_of :title, :description
 
   def self.search_by_title(search_term)

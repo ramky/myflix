@@ -11,16 +11,8 @@
           = f.text_field :title, label: "Title"
           = f.select :category_ids, options_for_select(Category.all.map {|c| [c.name, c.id]}), label: "Category"
           = f.text_area :description, rows: 8, label: "Description"
-          .control-group
-            %label.control-label Large Cover
-            .controls
-              %col.btn.btn-file
-                %input(type="file")
-            .control-group
-              %label.control-label Small Cover
-              .controls
-                %col.btn.btn-file
-                %input(type="file")
+          = f.file_field :large_cover_image, class: "btn btn-file"
+          = f.file_field :small_cover_image, class: "btn btn-file"
         %br
         %fieldset.form-group.action
           .controls
