@@ -11,8 +11,15 @@ class UsersController < ApplicationController
       if params[:invitation_token].present?
         handle_invitation
       end
-
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+      charge_card
+    else
+      render :new
+    end
+  end
+
+  def charge_card
+    begin
       Stripe::Charge.create(
         :amount => 995, # amount in cents, again
         :currency => "usd",
@@ -23,8 +30,9 @@ class UsersController < ApplicationController
       AppMailer.send_welcome_email(@user).deliver
       flash[:notice] = "You are now registered, please log in."
       redirect_to sign_in_path
-    else
-      render :new
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to sign_in_path
     end
   end
 
