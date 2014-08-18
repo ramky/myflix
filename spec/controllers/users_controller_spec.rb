@@ -13,6 +13,7 @@ describe UsersController do
     describe "POST create" do
       context "with valid input" do
         before do
+          StripeWrapper::Charge.stub(:create)
           post :create, user: Fabricate.attributes_for(:user)
         end
 
@@ -67,6 +68,7 @@ describe UsersController do
       end
 
       context "sending emails" do
+        before { StripeWrapper::Charge.stub(:create) }
         after { ActionMailer::Base.deliveries.clear }
         it "sends out email to the user with valid inputs" do
           post :create, user: { email: "joe@example.com", password: "password", full_name: "Joe Smith" }
@@ -103,19 +105,19 @@ describe UsersController do
     it "renders the :new view template" do
       invitation = Fabricate(:invitation)
       get :new_with_invitation_token, token: invitation.token
-      expect(response).to render_template :new  
+      expect(response).to render_template :new
     end
 
     it "sets @user with recipient's email" do
       invitation = Fabricate(:invitation)
       get :new_with_invitation_token, token: invitation.token
-      expect(assigns(:user).email).to eq(invitation.recipient_email) 
+      expect(assigns(:user).email).to eq(invitation.recipient_email)
     end
 
     it "sets @invitation_token" do
       invitation = Fabricate(:invitation)
       get :new_with_invitation_token, token: invitation.token
-      expect(assigns(:token)).to eq(invitation.token)
+      expect(assigns(:invitation_token)).to eq(invitation.token)
     end
 
     it "redirects to expired token page for invalid tokens" do

@@ -20,9 +20,8 @@ class UsersController < ApplicationController
 
   def charge_card
     begin
-      Stripe::Charge.create(
-        :amount => 995, # amount in cents, again
-        :currency => "usd",
+      StripeWrapper::Charge.create(
+        :amount => 995,
         :card => params[:stripeToken],
         :description => "Sign up charge for #{@user.email}"
       )
@@ -44,7 +43,7 @@ class UsersController < ApplicationController
     invitation = Invitation.where(token: params[:token]).first
     if invitation
       @user             = User.new(email: invitation.recipient_email)
-      @token            = invitation.token
+      @invitation_token = invitation.token
       render :new
     else
       redirect_to expired_token_path
