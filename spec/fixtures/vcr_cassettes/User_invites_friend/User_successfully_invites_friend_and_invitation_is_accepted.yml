@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=995&currency=usd&card=tok_14Stvi42i6ljKhjnusZOMgBr&description=Sign%20up%20charge%20for%20john%40example.com
+      string: amount=995&currency=usd&card=tok_14SvrV42i6ljKhjnSsHu5IDv
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -22,7 +22,7 @@ http_interactions:
         la-tec-30650.usa.tribune.com 13.3.0 Darwin Kernel Version 13.3.0: Tue Jun  3
         21:27:35 PDT 2014; root:xnu-2422.110.17~1/RELEASE_X86_64 x86_64"}'
       Content-Length:
-      - '115'
+      - '57'
   response:
     status:
       code: 200
@@ -31,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 18 Aug 2014 17:28:26 GMT
+      - Mon, 18 Aug 2014 19:32:14 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '1231'
+      - '1198'
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
@@ -52,16 +52,16 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_14Stvi42i6ljKhjnkYxrfO3W",
+          "id": "ch_14SvrV42i6ljKhjn8jhUFIab",
           "object": "charge",
-          "created": 1408382906,
+          "created": 1408390333,
           "livemode": false,
           "paid": true,
           "amount": 995,
           "currency": "usd",
           "refunded": false,
           "card": {
-            "id": "card_14Stvi42i6ljKhjn1Z0R8yxy",
+            "id": "card_14SvrV42i6ljKhjnz4kEP4wy",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -87,21 +87,21 @@ http_interactions:
             "object": "list",
             "total_count": 0,
             "has_more": false,
-            "url": "/v1/charges/ch_14Stvi42i6ljKhjnkYxrfO3W/refunds",
+            "url": "/v1/charges/ch_14SvrV42i6ljKhjn8jhUFIab/refunds",
             "data": []
           },
-          "balance_transaction": "txn_14Stvi42i6ljKhjnxVFx5K6R",
+          "balance_transaction": "txn_14SvrV42i6ljKhjnuMTkKFx6",
           "failure_message": null,
           "failure_code": null,
           "amount_refunded": 0,
           "customer": null,
           "invoice": null,
-          "description": "Sign up charge for john@example.com",
+          "description": null,
           "dispute": null,
           "metadata": {},
           "statement_description": null,
           "receipt_email": null
         }
     http_version: 
-  recorded_at: Mon, 18 Aug 2014 17:28:26 GMT
+  recorded_at: Mon, 18 Aug 2014 19:32:14 GMT
 recorded_with: VCR 2.9.2
