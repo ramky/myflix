@@ -13,6 +13,7 @@ class UsersController < ApplicationController
        handle_invitation
      end
     else
+      flash[:error] = 'Invalid user information.  Please check the errors below.'
       render :new
     end
   end
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
     if charge.successful?
       @user.save!
       AppMailer.send_welcome_email(@user).deliver
-      flash[:notice] = "You are now registered, please log in."
+      flash[:notice] = 'Thank you for registering with MyFlix. Please sign in now.'
       redirect_to sign_in_path
     else
       flash[:error] = charge.error_message
