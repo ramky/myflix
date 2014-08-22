@@ -15,6 +15,7 @@ gem 'faker'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'stripe'
+gem 'draper'
 
 group :development do
   gem 'sqlite3'
